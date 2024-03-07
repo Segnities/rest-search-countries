@@ -7,5 +7,5 @@ const theme = computed(() => $store.state.theme);
 </script>
 
 <template>
-  <h1>{{ theme }}</h1>
+  <h1 class="text-3xl font-bold underline">{{ theme }}</h1>
 </template>
