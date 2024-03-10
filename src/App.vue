@@ -1,11 +1,17 @@
 <script setup>
-import { computed } from "vue";
+import { onMounted } from "vue";
 import { useStore } from "vuex";
 
-const $store = useStore();
-const theme = computed(() => $store.state.theme);
+import Nav from "./components/Nav.vue";
+
+onMounted(()=> {
+  const $store = useStore();
+  $store.commit('toggleDefaultThemes');
+});
+
 </script>
 
 <template>
+  <Nav></Nav>
   <router-view></router-view>
 </template>

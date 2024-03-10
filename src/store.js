@@ -1,21 +1,29 @@
+
 import { createStore } from "vuex";
 
 const state = {
-   theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light'
+   theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light',
+   isDark:false
 }
 
 const mutations = {
-   darkTheme(state) {
-      state.theme = 'dark';
-   },
-   lightTheme(state) {
-      state.theme = 'light';
+   toggleDefaultThemes(state) {
+      if (state.theme === 'dark') {
+         state.theme = 'light';
+         state.isDark = true;
+         document.documentElement.classList.add('dark');
+      } else if (state.theme === 'light') {
+         state.theme = 'dark';
+         state.isDark = false;
+         document.documentElement.classList.remove('dark');
+      } else {
+         throw new Erorr(`Error in default theme name: ${state.theme} actual. Expected: light or dark`)
+      }
    }
 }
 
 const actions = {
-   darkTheme: ({ commit }) => commit('darkTheme'),
-   lightTheme: ({ commit }) => commit('lightTheme')
+   toggleDefaultThemes: ({ commit }) => commit('toggleDefaultThemes'),
 }
 
 export default createStore({
