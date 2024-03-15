@@ -6,15 +6,15 @@ const $store = useStore();
 const theme = computed(() => $store.state.theme);
 const isDark = computed(()=> $store.state.isDark);
 const toggleTheme = () => {
-	$store.commit('toggleDefaultThemes');
+	$store.dispatch('toggleDefaultThemes')
 };
 </script>
 
 <template>
-	<header class="flex justify-between items-center h-16 px-5 shadow-md dark:bg-vdb-bg__color">
+	<header class="flex justify-between items-center h-16 px-5 shadow-lg dark:bg-db-elements__color transition-colors duration-200">
 		<h1 class="font-bold dark:text-white">Where in the world?</h1>
-		<div class="flex justify-between items-center gap-2">
-			<svg @click="toggleTheme" class="cursor-pointer dark:fill-white fill-black"  version="1.1" id="Capa_1"
+		<div @click="toggleTheme" class="flex cursor-pointer transition-colors duration-200 justify-between items-center gap-2">
+			<svg class="cursor-pointer dark:fill-white fill-black"  version="1.1" id="Capa_1"
 				xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="21px"
 				viewBox="0 0 292.299 292.299" xml:space="preserve">
 				<g>
@@ -26,7 +26,7 @@ const toggleTheme = () => {
 					</g>
 				</g>
 			</svg>
-			<p class="text-sm dark:text-white">Dark mode</p>
+			<p class="text-sm dark:text-white">{{ isDark ? 'Light' : 'Dark' }} mode</p>
 		</div>
 	</header>
 </template>

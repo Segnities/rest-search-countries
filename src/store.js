@@ -1,9 +1,9 @@
-
 import { createStore } from "vuex";
 
 const state = {
    theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light',
-   isDark:false
+   isDark:false,
+   regions: 'all',
 }
 
 const mutations = {
