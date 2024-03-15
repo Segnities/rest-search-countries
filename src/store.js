@@ -3,7 +3,7 @@ import { createStore } from "vuex";
 const state = {
    theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light',
    isDark:false,
-   regions: 'all',
+   region: 'all',
 }
 
 const mutations = {
@@ -19,6 +19,9 @@ const mutations = {
       } else {
          throw new Erorr(`Error in default theme name: ${state.theme} actual. Expected: light or dark`)
       }
+   },
+   changeRegion(state, value) {
+      state.region = value;
    }
 }
 
