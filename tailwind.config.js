@@ -15,6 +15,7 @@ export default {
         'vlgbg__color': 'hsl(0, 0%, 98%)',
        }
     },
+    
   },
   plugins: [],
 }

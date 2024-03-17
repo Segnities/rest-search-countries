@@ -4,6 +4,8 @@ const state = {
    theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light',
    isDark:false,
    region: 'all',
+   searchBox: '',
+   countries: [],
 }
 
 const mutations = {
@@ -22,6 +24,9 @@ const mutations = {
    },
    changeRegion(state, value) {
       state.region = value;
+   },
+   fetchCountries(state, countries) {
+      state.countries = countries;
    }
 }
 
