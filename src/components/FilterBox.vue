@@ -29,13 +29,12 @@ c-6.462,3.731-13.793,5.703-21.199,5.703c-15.163,0-29.286-8.146-36.857-21.259c-5.
 c2.938-10.965,9.971-20.13,19.802-25.807C73.696,26.972,81.027,25,88.433,25C103.597,25,117.719,33.146,125.29,46.259z" />
          </svg>
          <input type="text" v-model="searchBoxRef.value"
-            class="w-full transition-colors duration-200 text-dg-input__color dark:text-white dark:bg-db-elements__color shadow-md h-14 px-16 text-sm  focus-visible:outline-none"
+            class="w-full transition-colors duration-200 text-dg-input__color dark:text-white dark:bg-db-elements__color shadow-md h-14 px-16 text-sm rounded-md  focus-visible:outline-none"
             placeholder="Search for a country...">
       </div>
       <select v-model="regionRef.value" @change="changeRegion"
-         class="shadow-md h-11 w-52 px-4 py-2 dark:bg-db-elements__color transition-colors duration-200 self-start  dark:text-white after:mr-2 mt-4 lg:mt-0 md:self-center">
+         class="shadow-md h-11 w-52 px-4 py-2 rounded-sm dark:bg-db-elements__color transition-colors duration-200 self-start  dark:text-white after:mr-2 mt-4 lg:mt-0 md:self-center">
          <option v-for="(region) in regions" :key="region.id" :value="region.value">{{ region.name }}</option>
       </select>
    </div>
-
 </template>

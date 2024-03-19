@@ -3,16 +3,15 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 const $store = useStore();
-const theme = computed(() => $store.state.theme);
 const isDark = computed(()=> $store.state.isDark);
 const toggleTheme = () => {
 	$store.dispatch('toggleDefaultThemes')
-};
+};		
 </script>
 
 <template>
-	<header class="flex justify-between items-center h-20 px-16 shadow-lg dark:bg-db-elements__color transition-colors duration-200">
-		<h1 class="font-bold text-xl tracking-wide dark:text-white">Where in the world?</h1>
+	<header class="flex justify-between items-center h-20 px-4 lg:px-16 shadow-lg dark:bg-db-elements__color transition-colors duration-200">
+		<h1 class="font-bold text-base sm:text-lg lg:text-xl tracking-wide dark:text-white">Where in the world?</h1>
 		<div @click="toggleTheme" class="flex cursor-pointer transition-colors duration-200 justify-between items-center gap-2">
 			<svg class="cursor-pointer dark:fill-white fill-black"  version="1.1" id="Capa_1"
 				xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px"
