@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, watch } from "vue";
 import { useStore } from "vuex";
 
 import { regions } from "../regions"
@@ -12,6 +12,16 @@ const searchBoxRef = reactive({ value: '' });
 const changeRegion = ($e) => {
    $store.commit('changeRegion', $e.target.value);
 }
+
+watch(regionRef, async() => {
+   try {
+      const res = await fetch('https://restcountries.com/v3.1/region/' + regionRef.value);
+      const data = await res.json();
+      $store.commit('fetchCountries', data.slice(0, 8));
+   } catch (error) {
+      console.log(error);
+   }
+});
 
 </script>
 

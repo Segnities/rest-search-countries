@@ -2,10 +2,10 @@ import { createStore } from "vuex";
 
 const state = {
    theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light',
-   isDark:false,
+   isDark: false,
    region: 'all',
    searchBox: '',
-   countries: [],
+   countries: []
 }
 
 const mutations = {
@@ -25,9 +25,10 @@ const mutations = {
    changeRegion(state, value) {
       state.region = value;
    },
-   fetchCountries(state, countries) {
-      state.countries = countries;
+   fetchCountries(state, value) {
+      state.countries = value;
    }
+ 
 }
 
 const actions = {
