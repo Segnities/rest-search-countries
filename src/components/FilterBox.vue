@@ -13,7 +13,7 @@ const changeRegion = ($e) => {
    $store.commit('changeRegion', $e.target.value);
 }
 
-watch(regionRef, async() => {
+watch(regionRef, async () => {
    try {
       const res = await fetch('https://restcountries.com/v3.1/region/' + regionRef.value);
       const data = await res.json();
@@ -22,6 +22,18 @@ watch(regionRef, async() => {
       console.log(error);
    }
 });
+
+watch(searchBoxRef, async () => {
+   try {
+      setTimeout(async() => {
+         const res = await fetch('https://restcountries.com/v3.1/name/' + searchBoxRef.value);
+         const data = await res.json();
+         $store.commit('fetchCountries', data.slice(0, 8));
+      }, 130);
+   } catch (error) {
+      console.log(error);
+   }
+})
 
 </script>
 
