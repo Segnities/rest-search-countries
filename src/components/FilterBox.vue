@@ -25,7 +25,7 @@ watch(regionRef, async () => {
 
 watch(searchBoxRef, async () => {
    try {
-      setTimeout(async() => {
+      setTimeout(async () => {
          const res = await fetch('https://restcountries.com/v3.1/name/' + searchBoxRef.value);
          const data = await res.json();
          $store.commit('fetchCountries', data.slice(0, 8));
@@ -55,7 +55,7 @@ c2.938-10.965,9.971-20.13,19.802-25.807C73.696,26.972,81.027,25,88.433,25C103.59
             placeholder="Search for a country...">
       </div>
       <select v-model="regionRef.value" @change="changeRegion"
-         class="shadow-md h-11 w-52 px-4 py-2 rounded-sm dark:bg-db-elements__color transition-colors duration-200 self-start  dark:text-white after:mr-2 mt-4 lg:mt-0 md:self-center">
+         class="shadow-md h-11 w-52 px-4 py-2 rounded-sm dark:bg-db-elements__color transition-colors duration-200 self-start dark:text-white mt-4 lg:mt-0 md:self-center">
          <option v-for="(region) in regions" :key="region.id" :value="region.value">{{ region.name }}</option>
       </select>
    </div>

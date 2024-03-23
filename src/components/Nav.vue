@@ -10,7 +10,7 @@ const toggleTheme = () => {
 </script>
 
 <template>
-	<header class="flex justify-between items-center h-20 px-4 lg:px-16 shadow-lg dark:bg-db-elements__color transition-colors duration-200">
+	<header class="flex justify-between items-center h-20 px-4 shadow-lg lg:px-16 dark:bg-db-elements__color transition-colors duration-200">
 		<h1 class="font-bold text-base sm:text-lg lg:text-xl tracking-wide dark:text-white">Where in the world?</h1>
 		<div @click="toggleTheme" class="flex cursor-pointer transition-colors duration-200 justify-between items-center gap-2">
 			<svg class="cursor-pointer dark:fill-white fill-black"  version="1.1" id="Capa_1"

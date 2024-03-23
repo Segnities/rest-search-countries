@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onBeforeUnmount } from "vue";
 import { useStore } from "vuex";
 
 import FilterBox from "./FilterBox.vue";
@@ -8,6 +8,10 @@ import CountryCard from "./CountryCard.vue";
 const $store = useStore();
 const countries = computed(() => $store.state.countries)
 console.log(countries.value);
+
+onBeforeUnmount(()=> {
+  $store.commit("fetchCountries", []);
+});
 
 </script>
 
