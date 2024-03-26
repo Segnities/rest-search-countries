@@ -26,6 +26,7 @@ const mutations = {
       state.region = value;
    },
    fetchCountries(state, value) {
+      state.countries = [];
       state.countries = value;
    }
  

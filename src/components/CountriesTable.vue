@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeUnmount } from "vue";
+import { computed, onBeforeUnmount, onMounted } from "vue";
 import { useStore } from "vuex";
 
 import FilterBox from "./FilterBox.vue";
@@ -9,8 +9,15 @@ const $store = useStore();
 const countries = computed(() => $store.state.countries)
 console.log(countries.value);
 
-onBeforeUnmount(()=> {
-  $store.commit("fetchCountries", []);
+onMounted(async () => {
+  try {
+    const response = await fetch('https://restcountries.com/v3.1/all');
+    const data = await response.json();
+    console.log(data.slice(0, 8));
+    $store.commit('fetchCountries', data.slice(0, 8))
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 </script>
