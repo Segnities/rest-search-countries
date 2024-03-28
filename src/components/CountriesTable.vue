@@ -9,6 +9,10 @@ const $store = useStore();
 const countries = computed(() => $store.state.countries)
 console.log(countries.value);
 
+const goToCountry = (countryName) => {
+  router.push({ path: "/country/" + country });
+};
+
 onMounted(async () => {
   try {
     const response = await fetch('https://restcountries.com/v3.1/all');

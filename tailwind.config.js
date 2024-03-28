@@ -15,7 +15,8 @@ export default {
         'vlgbg__color': 'hsl(0, 0%, 98%)',
       },
       animation: {
-        'appearq': 'appearq 0.7s ease-out'
+        'appearq': 'appearq 0.7s ease-out',
+        'opacity': 'opacity 0.4s ease-in-out'
       },
       keyframes: {
         appearq: {
@@ -26,6 +27,14 @@ export default {
           '100%': {
             opacity: 1,
             transform: 'translateY(0)',
+          }
+        },
+        opacity: {
+          '0%': {
+            opacity: 0
+          },
+          '100%': {
+            opacity: 1
           }
         }
       }
