@@ -82,109 +82,117 @@ watch(
 </script>
 <template>
   <div
-    v-if="!loader.isLoading"
-    class="bg-vlgbg__color h-screen dark:bg-vdb-bg__color transition-colors duration-200 px-4 pb-12 lg:px-20 animation-appearq"
+    class="h-screen bg-vlgbg__color dark:bg-vdb-bg__color transition-colors duration-200"
   >
-    <div class="pt-14">
-      <button
-        @click="goBack"
-        class="flex items-center justify-center shadow-xl dark:shadow-slate-800 rounded-md px-8 dark:bg-db-elements__color py-2"
+    <div
+      v-if="!loader.isLoading"
+      class="dark:bg-vdb-bg__color transition-colors duration-200 px-4 pb-12 lg:px-20 animation-appearq"
+    >
+      <div class="pt-14">
+        <button
+          @click="goBack"
+          class="flex items-center justify-center shadow-xl dark:shadow-slate-800 rounded-md px-8 dark:bg-db-elements__color py-2"
+        >
+          <img
+            src="@/assets/img/icon-left-arrow.png"
+            alt=""
+            class="w-5 h-5 dark:invert"
+          />
+          <span class="dark:text-vlgbg__color ml-2">Back</span>
+        </button>
+      </div>
+      <div
+        class="grid grid-rows-2 md:grid-rows-1 items-center md:grid-cols-2 md:gap-12 lg:gap-28 pt-14 md:pt-20"
       >
         <img
-          src="@/assets/img/icon-left-arrow.png"
+          :src="country.value.flags.png"
+          class="w-full h-80 transition-colors duration-200 animate-appearq"
           alt=""
-          class="w-5 h-5 dark:invert"
         />
-        <span class="dark:text-vlgbg__color ml-2">Back</span>
-      </button>
-    </div>
-    <div
-      class="grid grid-rows-2 md:grid-rows-1 items-center md:grid-cols-2 md:gap-12 lg:gap-28 pt-14 md:pt-20"
-    >
-      <img :src="country.value.flags.png" class="w-full h-80 transition-colors duration-200 animate-appearq" alt="" />
-      <section class="-mt-4">
-        <h3 class="dark:text-white text-xl font-bold animate-opacity">
-          {{ country.value.name.common }}
-        </h3>
-        <div class="flex flex-col md:flex-row justify-between">
-          <div class="mt-8">
-            <p class="dark:text-white my-1 font-medium animate-opacity">
-              Native name:
-              <span class="text-slate-500 font-normal">{{
-                country.value.name.common
-              }}</span>
-            </p>
-            <p class="dark:text-white my-1 font-medium animate-opacity">
-              Population:
-              <span class="text-slate-500 font-normal">{{
-                formatPopulation(country.value.population)
-              }}</span>
-            </p>
-            <p class="dark:text-white my-1 font-medium animate-opacity">
-              Region:
-              <span class="text-slate-500 font-normal">{{
-                country.value.region
-              }}</span>
-            </p>
-            <p class="dark:text-white my-1 font-medium animate-opacity">
-              Subregion:
-              <span class="text-slate-500 font-normal">{{
-                country.value.subregion
-              }}</span>
-            </p>
-            <p class="dark:text-white my-1 font-medium">
-              Capital:
-              <span class="text-slate-500 font-normal">{{
-                country.value.capital[0]
-              }}</span>
-            </p>
+        <section class="-mt-4">
+          <h3 class="dark:text-white text-xl font-bold animate-opacity">
+            {{ country.value.name.common }}
+          </h3>
+          <div class="flex flex-col md:flex-row justify-between">
+            <div class="mt-8">
+              <p class="dark:text-white my-1 font-medium animate-opacity">
+                Native name:
+                <span class="text-slate-500 font-normal">{{
+                  country.value.name.common
+                }}</span>
+              </p>
+              <p class="dark:text-white my-1 font-medium animate-opacity">
+                Population:
+                <span class="text-slate-500 font-normal">{{
+                  formatPopulation(country.value.population)
+                }}</span>
+              </p>
+              <p class="dark:text-white my-1 font-medium animate-opacity">
+                Region:
+                <span class="text-slate-500 font-normal">{{
+                  country.value.region
+                }}</span>
+              </p>
+              <p class="dark:text-white my-1 font-medium animate-opacity">
+                Subregion:
+                <span class="text-slate-500 font-normal">{{
+                  country.value.subregion
+                }}</span>
+              </p>
+              <p class="dark:text-white my-1 font-medium">
+                Capital:
+                <span class="text-slate-500 font-normal">{{
+                  country.value.capital[0]
+                }}</span>
+              </p>
+            </div>
+            <div class="lg:mr-24 mt-12">
+              <p class="dark:text-white my-1 font-medium animate-opacity">
+                Top level domain:
+                <span class="text-slate-500 font-normal">{{
+                  country.value.tld[0]
+                }}</span>
+              </p>
+              <p class="dark:text-white my-1 font-medium animate-opacity">
+                Currencies:
+                <span
+                  class="text-slate-500 font-normal"
+                  v-if="
+                    country.value.currencies &&
+                    country.value.currencies.length > 1
+                  "
+                >
+                  {{ getCurrencies(country.currencies).join(", ") }}
+                </span>
+                <span v-else class="text-slate-500 font-normal">
+                  {{ getCurrencies(country.value.currencies)[0] }}
+                </span>
+              </p>
+              <p class="dark:text-white my-1 font-medium animate-opacity">
+                Languages:
+                <span class="text-slate-500 font-normal">{{
+                  country.value.capital[0]
+                }}</span>
+              </p>
+            </div>
           </div>
-          <div class="lg:mr-24 mt-12">
-            <p class="dark:text-white my-1 font-medium animate-opacity">
-              Top level domain:
-              <span class="text-slate-500 font-normal">{{
-                country.value.tld[0]
-              }}</span>
-            </p>
-            <p class="dark:text-white my-1 font-medium animate-opacity">
-              Currencies:
-              <span
-                class="text-slate-500 font-normal"
-                v-if="
-                  country.value.currencies &&
-                  country.value.currencies.length > 1
-                "
-              >
-                {{ getCurrencies(country.currencies).join(", ") }}
-              </span>
-              <span v-else class="text-slate-500 font-normal">
-                {{ getCurrencies(country.value.currencies)[0] }}
-              </span>
-            </p>
-            <p class="dark:text-white my-1 font-medium animate-opacity">
-              Languages:
-              <span class="text-slate-500 font-normal">{{
-                country.value.capital[0]
-              }}</span>
-            </p>
+          <div class="flex flex-wrap items-center mt-12">
+            <span class="font-medium dark:text-white mr-3 animate-opacity">
+              Border countries:
+            </span>
+            <span
+              v-for="borderCountry in borderCountries.value"
+              :key="borderCountry"
+              class="py-1 px-3 mr-2 mt-2 animate-appearq shadow-md dark:bg-db-elements__color border-transparent border text-slate-500 text-sm rounded-sm hover:cursor-pointer hover:border-slate-500"
+              role="link"
+              tabindex="1"
+              @click="goToCountry(borderCountry)"
+            >
+              {{ borderCountry }}
+            </span>
           </div>
-        </div>
-        <div class="flex flex-wrap items-center mt-12">
-          <span class="font-medium dark:text-white mr-3 animate-opacity">
-            Border countries:
-          </span>
-          <span
-            v-for="borderCountry in borderCountries.value"
-            :key="borderCountry"
-            class="py-1 px-3 mr-2 mt-2 animate-appearq shadow-md dark:bg-db-elements__color border-transparent border text-slate-500 text-sm rounded-sm hover:cursor-pointer hover:border-slate-500"
-            role="link"
-            tabindex="1"
-            @click="goToCountry(borderCountry)"
-          >
-            {{ borderCountry }}
-          </span>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   </div>
 </template>
