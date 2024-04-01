@@ -59,7 +59,7 @@ const fetchBorderCountries = async () => {
     }
   } catch (e) {
     console.log(e);
-  }
+``  }
 };
 
 onMounted(async () => {
@@ -176,7 +176,10 @@ watch(
               </p>
             </div>
           </div>
-          <div class="flex flex-wrap items-center mt-12" v-if="borderCountries.value.length">
+          <div
+            class="flex flex-wrap items-center mt-12"
+            v-if="borderCountries.value.length"
+          >
             <span class="font-medium dark:text-white mr-3 animate-opacity">
               Border countries:
             </span>
